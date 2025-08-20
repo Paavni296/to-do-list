@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 My To-Do List</h1>
+
+    <form id="todo-form">
+      <input id="task-input" type="text" placeholder="Add a task..." autocomplete="off">
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="todo-list"></ul>
+
+    <p class="counts">
+      <span id="count-done">0</span>/<span id="count-total">0</span> tasks done
+    </p>
+  </div>
+
+  <script>
+    const form = document.getElementById("todo-form");
+    const input = document.getElementById("task-input");
+    const list  = document.getElementById("todo-list");
+    const total = document.getElementById("count-total");
+    const done  = document.getElementById("count-done");
+
+    function updateCounts() {
+      const items = list.querySelectorAll("li");
+      const doneItems = list.querySelectorAll("li.done");
+      total.textContent = items.length;
+      done.textContent  = doneItems.length;
+    }
+
+    function addTask(text) {
+      if (!text.trim()) return;
+
+      const li = document.createElement("li");
+      li.className = "task";
+
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.addEventListener("change", () => {
+        li.classList.toggle("done", cb.checked);
+        updateCounts();
+      });
+
+      const span = document.createElement("span");
+      span.textContent = text;
+
+      const del = document.createElement("button");
+      del.className = "delete";
+      del.innerHTML = "❌";
+      del.addEventListener("click", () => {
+        li.remove();
+        updateCounts();
+      });
+
+      li.appendChild(cb);
+      li.appendChild(span);
+      li.appendChild(del);
+      list.appendChild(li);
+
+      // animation
+      li.classList.add("fade-in");
+
+      updateCounts();
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      addTask(input.value);
+      input.value = "";
+      input.focus();
+    });
+  </script>
+</body>
+</html>
