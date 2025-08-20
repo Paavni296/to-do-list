@@ -13,7 +13,6 @@ A simple To-Do List project made with HTML, CSS, and JavaScript.
 3. Start adding your tasks!
 
 ## 🔗 Live Demo
-[View on GitHub Pages](https://Paavni296.github.io/todo-list/)
-
+[View on GitHub Pages](https://1drv.ms/f/c/eeba716eb3fd0576/EqRYcMBhZTFDnrFkbUzz-u0BSmYqfohWoTbevyUpwJBKDg?e=CCzjTI)
 ---
 Made with ❤️ as my first web project.
